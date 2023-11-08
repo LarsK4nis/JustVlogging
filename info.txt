@@ -1,0 +1,24 @@
+app/: Contiene el código de la aplicación.
+
+static/: Recursos estáticos como hojas de estilo CSS y archivos JavaScript.
+templates/: Plantillas HTML para las vistas de la aplicación.
+__init__.py: Inicializa la aplicación como un paquete Python.
+models.py: Define los modelos de datos para la aplicación.
+routes.py: Define las rutas de la aplicación y las vistas asociadas.
+forms.py: Si estás usando WTForms, aquí definirías las clases de formulario.
+utils.py: Funciones de utilidad que puedes necesitar en toda la aplicación.
+
+docker/: Contiene los Dockerfiles para la aplicación y la base de datos.
+python/: Dockerfile para el entorno de Python.
+db/: Dockerfile para el servicio de base de datos.
+tests/: Tests para la aplicación.
+
+.env: Archivo para variables de entorno (asegúrate de no incluirlo en el control de versiones).
+
+.gitignore: Para excluir archivos de control de versiones.
+
+docker-compose.yml: Define cómo se deben ejecutar los servicios de Docker juntos.
+
+requirements.txt: Lista todas las dependencias de Python necesarias para el proyecto.
+
+README.md: Documentación sobre cómo configurar y ejecutar la aplicación.
