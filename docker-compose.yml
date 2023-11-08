@@ -1,6 +1,6 @@
 version: '3.8'
 
-services: #
+services: #Servicios que corremos en nuestra red de docker.
   app:
     build:
       context: ./docker/python  #AQUI VIENEN LOS PROBLEMAS :)
