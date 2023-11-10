@@ -46,7 +46,7 @@ def user(username):
 def edit_profile():
     form = EditProfileForm()
     if form.validate_on_submit():
-        # Añadir lógica de actualización del perfil del usuario
+        # Lógica para actualizar el perfil del usuario
         return redirect(url_for('user', username=current_user.username))
     return render_template('edit_profile.html', form=form)
 
