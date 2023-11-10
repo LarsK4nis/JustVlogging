@@ -69,7 +69,10 @@ def edit_profile():
 def create_post():
     form = PostForm()
     if form.validate_on_submit():
-        # Lógica para crear un nuevo post
+        post = Post(content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post has been created!')
         return redirect(url_for('index'))
     return render_template('create_post.html', form=form)
 
