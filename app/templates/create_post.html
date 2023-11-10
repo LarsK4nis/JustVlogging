@@ -1,0 +1,11 @@
+<!-- templates/create_post.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>New Post</h2>
+<form method="post">
+    {{ form.hidden_tag() }}
+    {{ form.content.label }} {{ form.content() }}<br>
+    {{ form.submit() }}
+</form>
+{% endblock %}
