@@ -55,7 +55,7 @@ def edit_profile():
 def create_post():
     form = PostForm()
     if form.validate_on_submit():
-        # Añadir lógica para crear un nuevo post
+        # Lógica para crear un nuevo post
         return redirect(url_for('index'))
     return render_template('create_post.html', form=form)
 
