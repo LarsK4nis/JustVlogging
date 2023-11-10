@@ -3,15 +3,14 @@ from . import app, db
 from .models import User, Post, Follower
 from .forms import LoginForm, RegistrationForm, EditProfileForm, PostForm
 from flask_login import login_user, logout_user, current_user, login_required
-from werkzeug.security import generate_password_hash
-
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 @app.route('/')
 def index():
     posts = Post.query.all()  # O cualquier lógica para obtener los posts
     return render_template('index.html', posts=posts)
 
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -46,7 +45,6 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
-
 @app.route('/user/<username>')
 @login_required
 def user(username):
@@ -59,7 +57,7 @@ def user(username):
 def edit_profile():
     form = EditProfileForm()
     if form.validate_on_submit():
-        # Lógica para actualizar el perfil del usuario
+        # Implementar lógica de actualización del perfil aquí
         return redirect(url_for('user', username=current_user.username))
     return render_template('edit_profile.html', form=form)
 
@@ -78,14 +76,13 @@ def create_post():
 @app.route('/follow/<username>')
 @login_required
 def follow(username):
-    # Implementar la lógica de seguir a un usuario
+    # Implementar lógica de seguir a un usuario aquí
     flash('You are now following {}!'.format(username))
-    return redirect(url_for('user_profile', username=username))
+    return redirect(url_for('user', username=username))
 
 @app.route('/unfollow/<username>')
 @login_required
 def unfollow(username):
-    # Implementar la lógica de dejar de seguir a un usuario
+    # Implementar lógica de dejar de seguir a un usuario aquí
     flash('You have stopped following {}.'.format(username))
-    return redirect(url_for('user_profile', username=username))
-
+    return redirect(url_for('user', username=username))
