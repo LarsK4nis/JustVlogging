@@ -6,9 +6,10 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash
 
 
+
 @app.route('/')
 def index():
-    posts = Post.query.order_by(Post.created_at.desc()).all()
+    posts = Post.query.all()  # O cualquier lógica para obtener los posts
     return render_template('index.html', posts=posts)
 
 @app.route('/login', methods=['GET', 'POST'])
