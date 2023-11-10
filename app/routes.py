@@ -14,11 +14,9 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        # Añadir lógica de verificación y inicio de sesión del usuario
+        # Lógica para verificar las credenciales y iniciar sesión
         return redirect(url_for('index'))
     return render_template('login.html', form=form)
 
