@@ -33,7 +33,6 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/register', methods=['GET', 'POST'])
-@app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -79,11 +78,14 @@ def create_post():
 @app.route('/follow/<username>')
 @login_required
 def follow(username):
-    # Añadir lógica para seguir a un usuario
-    return redirect(url_for('user', username=username))
+    # Implementar la lógica de seguir a un usuario
+    flash('You are now following {}!'.format(username))
+    return redirect(url_for('user_profile', username=username))
 
 @app.route('/unfollow/<username>')
 @login_required
 def unfollow(username):
-    # Añadir lógica para dejar de seguir a un usuario
-    return redirect(url_for('user', username=username))
+    # Implementar la lógica de dejar de seguir a un usuario
+    flash('You have stopped following {}.'.format(username))
+    return redirect(url_for('user_profile', username=username))
+
