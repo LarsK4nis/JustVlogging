@@ -30,18 +30,9 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        # Aquí se implementa la lógica de creación de usuario.
-        # Por ejemplo, encriptar la contraseña, crear un nuevo registro de usuario
-        # en la base de datos, y luego redirigir al usuario a la página de inicio de sesión.
-        user = User(username=form.username.data, email=form.email.data,
-                    password_hash=generate_password_hash(form.password.data))
-        db.session.add(user)
-        db.session.commit()
-        flash('Congratulations, you are now a registered user!')
+        # Lógica para registrar al usuario
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
