@@ -12,12 +12,18 @@ def index():
     posts = Post.query.all()  # O cualquier lógica para obtener los posts
     return render_template('index.html', posts=posts)
 
-@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        # Lógica para verificar las credenciales y iniciar sesión
-        return redirect(url_for('index'))
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and check_password_hash(user.password_hash, form.password.data):
+            login_user(user)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('index'))
+        else:
+            flash('Login Unsuccessful. Please check email and password')
     return render_template('login.html', form=form)
 
 @app.route('/logout')
