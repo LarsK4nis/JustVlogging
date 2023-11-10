@@ -1,15 +1,26 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
-# Crear la instancia de la aplicación Flask
-app = Flask(__name__)
+# Instancias de las extensiones
+db = SQLAlchemy()
+login_manager = LoginManager()
 
-# Configurar la conexión a la base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://user:password@db/microblogging'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+def create_app():
+    app = Flask(__name__)
 
-# Inicializar SQLAlchemy con la configuración de la aplicación
-db = SQLAlchemy(app)
+    # Configuraciones básicas de la aplicación
+    app.config['SECRET_KEY'] = 'tu_clave_secreta_aqui'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://user:password@db/microblogging'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Importar las rutas después de crear la instancia de Flask
-from . import routes
+    # Inicializa las extensiones con la aplicación
+    db.init_app(app)
+    login_manager.init_app(app)
+
+    # Importa las rutas dentro del contexto de la aplicación
+    with app.app_context():
+        from . import routes
+        db.create_all()  # Crea las tablas de la base de datos si no existen
+
+    return app
