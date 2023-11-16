@@ -7,9 +7,8 @@ WORKDIR /app
 # Copia los archivos de requisitos primero para aprovechar la caché de la capa de Docker
 COPY requirements.txt .
 
-# Instala los paquetes necesarios especificados en requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
+# Instala los paquetes necesarios especificados en requirements.txt     ----> /requierments.txt
+RUN pip install --no-cache-dir -r requirements.txt  
 # Copia el resto de tu código de aplicación al contenedor
 COPY . .
 
