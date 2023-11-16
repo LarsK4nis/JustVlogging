@@ -1,4 +1,3 @@
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -18,6 +17,13 @@ def create_app():
     # Inicializa las extensiones con la aplicación
     db.init_app(app)
     login_manager.init_app(app)
+
+    # Configurar el cargador de usuario para Flask-Login
+    from .models import User
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
     # Importa las rutas dentro del contexto de la aplicación
     with app.app_context():

@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request
-from . import app, db
+from flask import current_app as app
+from app import db
 from .models import User, Post, Follower
 from .forms import LoginForm, RegistrationForm, EditProfileForm, PostForm
 from flask_login import login_user, logout_user, current_user, login_required
@@ -86,3 +87,7 @@ def unfollow(username):
     # Implementar lógica de dejar de seguir a un usuario aquí
     flash('You have stopped following {}.'.format(username))
     return redirect(url_for('user', username=username))
+
+@app.route('/hello')
+def hello():
+    return '<h1>Hello, World!</h1>'
