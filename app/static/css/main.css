@@ -17,6 +17,11 @@ header {
     color: #fff;
     padding: 10px 0;
     text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+header:hover {
+    background-color: #444;
 }
 
 main {
@@ -32,10 +37,20 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+footer:hover {
+    background-color: #444;
 }
 
 h1, h2 {
     color: #333;
+    transition: color 0.3s ease;
+}
+
+h1:hover {
+    color: #555;
 }
 
 form {
@@ -44,6 +59,7 @@ form {
     padding: 20px;
     background: white;
     border-radius: 10px;
+    animation: fadeIn 1s ease forwards;
 }
 
 form label,
@@ -55,14 +71,59 @@ form button {
     margin-bottom: 10px;
 }
 
+form label {
+    margin-bottom: 5px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    border-color: #333;
+}
+
 form button {
     background: #333;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    border-radius: 5px;
 }
 
 form button:hover {
     background: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Añade más estilos según sea necesario */
+a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #555;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
