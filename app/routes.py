@@ -15,24 +15,28 @@ def index():
         if user and check_password_hash(user.password_hash, password):
             login_user(user)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('index'))
+            return redirect(next_page) if next_page else redirect(url_for('dashboard'))
         else:
             flash('Login Unsuccessful. Please check email and password')
-    posts = Post.query.all()  # O cualquier lógica para obtener los posts
+    posts = Post.query.all()
     return render_template('index.html', posts=posts)
 
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('dashboard'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and check_password_hash(user.password_hash, form.password.data):
             login_user(user)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('index'))
+            return redirect(next_page) if next_page else redirect(url_for('dashboard'))
         else:
             flash('Login Unsuccessful. Please check email and password')
     return render_template('login.html', form=form)
@@ -44,17 +48,26 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
+        user = User.query.filter((User.username == form.username.data) | (User.email == form.email.data)).first()
+        if user:
+            flash('Username or email already exists. Please choose a different one.')
+            return redirect(url_for('register'))
         hashed_password = generate_password_hash(form.password.data)
         new_user = User(username=form.username.data, email=form.email.data, password_hash=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-        flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('login'))
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Congratulations, you are now a registered user!')
+            return redirect(url_for('login'))
+        except IntegrityError:
+            db.session.rollback()
+            flash('An error occurred. Username or email might already be taken.')
     return render_template('register.html', form=form)
 
 @app.route('/user/<username>')
@@ -82,7 +95,7 @@ def create_post():
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!')
-        return redirect(url_for('index'))
+        return redirect(url_for('dashboard'))
     return render_template('create_post.html', form=form)
 
 @app.route('/follow/<username>')
