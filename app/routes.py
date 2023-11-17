@@ -6,10 +6,21 @@ from .forms import LoginForm, RegistrationForm, EditProfileForm, PostForm
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        user = User.query.filter_by(email=email).first()
+        if user and check_password_hash(user.password_hash, password):
+            login_user(user)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('index'))
+        else:
+            flash('Login Unsuccessful. Please check email and password')
     posts = Post.query.all()  # O cualquier lógica para obtener los posts
     return render_template('index.html', posts=posts)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
