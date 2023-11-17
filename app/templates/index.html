@@ -2,14 +2,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Welcome to the Microblogging App</h1>
-<h2>Login</h2>
-<form method="post" action="{{ url_for('login') }}">
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <input type="submit" value="Login">
-</form>
-<p>No tienes una cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
+<div class="welcome-heading">
+    <h1>Welcome to the Microblogging App</h1>
+</div>
+<div class="login-form-container">
+    <form method="post" action="{{ url_for('login') }}" class="login-form">
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <input type="submit" value="Login">
+    </form>
+    <p class="register-link">No tienes una cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
+</div>
 <!-- Mostrar los posts aquí -->
 {% endblock %}
-
