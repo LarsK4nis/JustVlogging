@@ -23,7 +23,7 @@ services: #Servicios que corremos en nuestra red de docker.
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data #Mirar persistencia con los volumenes
 
   pgadmin:
     image: dpage/pgadmin4
