@@ -167,3 +167,17 @@ a:hover {
 .logout-button:hover {
     background-color: #d32f2f;
 }
+.error-messages {
+    background-color: #ffdddd;
+    border: 1px solid #ff0000;
+    color: #d8000c;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.error-messages p {
+    margin: 5px 0;
+}
+
