@@ -6,12 +6,22 @@
     <h1>Welcome to the Microblogging App</h1>
 </div>
 <div class="login-form-container">
-    <form method="post" action="{{ url_for('login') }}" class="login-form">
+    <form method="post" action="{{ url_for('index') }}" class="login-form">
+        {{ form.hidden_tag() }}
         <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
         <input type="submit" value="Login">
     </form>
     <p class="register-link">No tienes una cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
 </div>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
 <!-- Mostrar los posts aquí -->
 {% endblock %}

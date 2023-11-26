@@ -14,10 +14,9 @@ def index():
         user = User.query.filter_by(email=email).first()
         if user and check_password_hash(user.password_hash, password):
             login_user(user)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('dashboard'))
+            return redirect(url_for('dashboard'))
         else:
-            flash('Login Unsuccessful. Please check email and password')
+            flash('Alguno de los campos introducidos no son correctos')
     posts = Post.query.all()
     return render_template('index.html', posts=posts)
 
