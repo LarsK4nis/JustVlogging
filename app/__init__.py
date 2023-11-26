@@ -10,7 +10,7 @@ def create_app():
     app = Flask(__name__)
 
     # Configuraciones básicas de la aplicación
-    app.config['SECRET_KEY'] = 'tu_clave_secreta_aqui'
+    app.config['SECRET_KEY'] = 'YidkXHhiYVx4YWJceDExM1x4YzJceDFkWkZKK1x4MGNceGJmXHhjZFx4ZTVkXHhjNFx4OTFceGFiXHhhNTJceGJlXHhjMw=='
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://user:password@db/microblogging'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
