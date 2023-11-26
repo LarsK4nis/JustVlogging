@@ -149,8 +149,9 @@ a:hover {
 }
 .user-info {
     position: absolute;
-    top: 10px;
+    top: 30px; /* Ajustado para desplazar el texto hacia abajo */
     right: 10px;
+    padding-top: 20px; /* Agrega un relleno adicional en la parte superior */
 }
 
 .logout-button {
@@ -160,7 +161,7 @@ a:hover {
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 20px; /* Ajustado según sea necesario */
 }
 
 .logout-button:hover {
