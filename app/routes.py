@@ -85,17 +85,19 @@ def edit_profile():
         return redirect(url_for('user', username=current_user.username))
     return render_template('edit_profile.html', form=form)
 
-@app.route('/create_post', methods=['GET', 'POST'])
+@app.route('/create_post', methods=['POST'])
 @login_required
 def create_post():
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(content=form.content.data, author=current_user)
+    content = request.form.get('content')
+    if content:
+        post = Post(content=content, author=current_user)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!')
-        return redirect(url_for('dashboard'))
-    return render_template('create_post.html', form=form)
+    else:
+        flash('Please enter some content for your post.')
+    return redirect(url_for('dashboard'))
+
 
 @app.route('/follow/<username>')
 @login_required

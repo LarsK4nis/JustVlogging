@@ -7,7 +7,36 @@
     <a href="{{ url_for('edit_profile') }}" class="edit-profile-button">Editar perfil</a>
     <a href="{{ url_for('logout') }}" class="logout-button">Cerrar sesión</a>
 </div>
+
 <h1>Dashboard</h1>
+
+<!-- Botón para abrir el modal de creación de posts -->
+<button onclick="document.getElementById('createPostModal').style.display='block'">Crear Post</button>
+
+<!-- Modal para crear un nuevo post -->
+<div id="createPostModal" class="modal">
+    <!-- Contenido del modal -->
+    <div class="modal-content">
+        <span onclick="document.getElementById('createPostModal').style.display='none'" class="close">&times;</span>
+        <form method="POST" action="{{ url_for('create_post') }}">
+            <textarea name="content" placeholder="¿Qué estás pensando?"></textarea>
+            <input type="submit" value="Publicar">
+        </form>
+    </div>
+</div>
+
+<!-- Mostrar mensajes flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    <div class="flash-messages">
+        {% for category, message in messages %}
+            <div class="{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endwith %}
+
+<!-- Aquí irá el feed de posts -->
 <p>Hello world!</p>
-<!-- Aquí irá el contenido dinámico en el futuro -->
+
 {% endblock %}
