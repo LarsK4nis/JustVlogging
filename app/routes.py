@@ -23,7 +23,8 @@ def index():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    posts = Post.query.order_by(Post.created_at.desc()).all()  # Obtiene todos los posts ordenados
+    return render_template('dashboard.html', posts=posts)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

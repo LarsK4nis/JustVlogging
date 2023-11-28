@@ -15,7 +15,6 @@
 
 <!-- Modal para crear un nuevo post -->
 <div id="createPostModal" class="modal">
-    <!-- Contenido del modal -->
     <div class="modal-content">
         <span onclick="document.getElementById('createPostModal').style.display='none'" class="close">&times;</span>
         <form method="POST" action="{{ url_for('create_post') }}">
@@ -36,7 +35,14 @@
 {% endif %}
 {% endwith %}
 
-<!-- Aquí irá el feed de posts -->
-<p>Hello world!</p>
+<!-- Feed de posts -->
+<div class="posts-container">
+    {% for post in posts %}
+        <div class="post">
+            <p><strong>{{ post.author.username }}</strong> <span>{{ post.created_at }}</span></p>
+            <p>{{ post.content }}</p>
+        </div>
+    {% endfor %}
+</div>
 
 {% endblock %}
