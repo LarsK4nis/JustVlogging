@@ -149,35 +149,36 @@ a:hover {
 }
 .user-info {
     position: absolute;
-    top: 30px; /* Ajustado para desplazar el texto hacia abajo */
+    top: 50px; /* Aumenta este valor para desplazar la sección hacia abajo */
     right: 10px;
-    padding-top: 20px; /* Agrega un relleno adicional en la parte superior */
+    text-align: right;
 }
 
+.edit-profile-button,
 .logout-button {
-    display: inline-block;
+    display: block; /* Los botones se muestran uno debajo del otro */
     padding: 5px 10px;
-    background-color: #f44336;
-    color: white;
+    margin-top: 5px; /* Separación ligera entre los botones */
     text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px; /* Ajustado según sea necesario */
-}
-
-.logout-button:hover {
-    background-color: #d32f2f;
-}
-.error-messages {
-    background-color: #ffdddd;
-    border: 1px solid #ff0000;
-    color: #d8000c;
-    margin: 20px 0;
-    padding: 10px;
     border-radius: 5px;
     text-align: center;
 }
 
-.error-messages p {
-    margin: 5px 0;
+.edit-profile-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.edit-profile-button:hover {
+    background-color: #388E3C;
+}
+
+.logout-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
 }
 
