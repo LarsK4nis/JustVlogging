@@ -320,3 +320,18 @@ input[type="submit"]:hover {
     background-color: #1991db;
 }
 
+.create-post-button {
+    background-color: #1da1f2;
+    color: white;
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.create-post-button:hover {
+    background-color: #1991db;
+}
+
