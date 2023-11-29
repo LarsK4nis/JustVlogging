@@ -105,7 +105,7 @@ def create_post():
 def follow(username):
     # Implementar lógica de seguir a un usuario aquí
     flash('You are now following {}!'.format(username))
-    return redirect(url_for('user', username=username))
+    return redirect(url_for('user', username=username))      # IMPLEMENTAR LOGICAS PARA FOLLOW Y UNFOLLOW
 
 @app.route('/unfollow/<username>')
 @login_required
