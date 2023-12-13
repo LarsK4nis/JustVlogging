@@ -77,7 +77,6 @@ def user(username):
     posts = user.posts.order_by(Post.created_at.desc()).all()
     return render_template('user.html', user=user, posts=posts)
 
-from flask import flash
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
