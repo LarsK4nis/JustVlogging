@@ -320,3 +320,17 @@ input[type="submit"]:hover {
     background-color: #1991db;
 }
 
+.create-post-button {
+    background-color: #1da1f2; /* Color azul */
+    color: white;
+    padding: 5px 10px; /* Ajusta el padding según necesites */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    font-size: 0.9em; /* Ajusta el tamaño del texto */
+    margin-top: 10px; /* Espacio desde la parte superior */
+    display: inline-block; /* Hace que el botón no ocupe todo el ancho */
+}
+
+.create-post-button:hover {
+    background-color: #1991db; /* Color al pasar el ratón por encima */
+}
