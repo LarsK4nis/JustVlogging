@@ -4,8 +4,19 @@
 {% block content %}
 <h2>Edit Profile</h2>
 
+<!-- Mostrar mensajes flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+        <div class="{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
 <!-- Botón para abrir el modal -->
-<button onclick="openModal()">Edit Profile</button>
+<button onclick="openModal()" class="edit-profile-button">Edit Profile</button>
 
 <!-- Modal para editar el perfil -->
 <div id="editProfileModal" class="modal">

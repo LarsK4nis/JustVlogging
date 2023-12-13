@@ -77,30 +77,35 @@ def user(username):
     posts = user.posts.order_by(Post.created_at.desc()).all()
     return render_template('user.html', user=user, posts=posts)
 
+from flask import flash
+
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
     form = EditProfileForm()
     if form.validate_on_submit():
-        # Comprobar si el nuevo nombre de usuario ya está en uso
-        existing_user = User.query.filter(User.username == form.username.data).first()
-        if existing_user and existing_user.username != current_user.username:
-            flash('El nombre de usuario ya está en uso. Por favor, elige otro.')
-        else:
-            # Actualizar los datos del usuario
-            current_user.username = form.username.data
-            # Suponiendo que el formulario también tenga un campo de email
-            current_user.email = form.email.data  
-            db.session.commit()
-            flash('Tu perfil ha sido actualizado.')
-            return redirect(url_for('user', username=current_user.username))
+        current_username = current_user.username
+        new_username = form.username.data
+        new_email = form.email.data
 
-    # Precargar los campos del formulario con los datos actuales del usuario
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.email.data = current_user.email
+        # Comprueba si el nuevo nombre de usuario ya existe
+        existing_user = User.query.filter((User.username == new_username) & (User.username != current_username)).first()
+        if existing_user:
+            flash('El nombre de usuario ya está en uso. Por favor, elige otro.', 'error')
+            return redirect(url_for('edit_profile'))
+
+        # Actualiza los datos del usuario
+        try:
+            current_user.username = new_username
+            current_user.email = new_email
+            db.session.commit()
+            flash('Tu perfil ha sido actualizado con éxito.', 'success')
+        except Exception as e:
+            flash('Ocurrió un error al actualizar tu perfil.', 'error')
+            db.session.rollback()
 
     return render_template('edit_profile.html', form=form)
+
 
 
 @app.route('/create_post', methods=['POST'])
