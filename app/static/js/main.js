@@ -28,3 +28,10 @@ window.onload = function() {
         }
     }
 }
+function openModal() {
+    document.getElementById('editProfileModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('editProfileModal').style.display = 'none';
+}

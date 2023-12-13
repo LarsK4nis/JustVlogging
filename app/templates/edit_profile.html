@@ -3,10 +3,25 @@
 
 {% block content %}
 <h2>Edit Profile</h2>
-<form method="post">
-    {{ form.hidden_tag() }}
-    {{ form.username.label }} {{ form.username() }}<br>
-    {{ form.email.label }} {{ form.email() }}<br>
-    {{ form.submit() }}
-</form>
-{% endblock %}   
+
+<!-- Botón para abrir el modal -->
+<button onclick="openModal()">Edit Profile</button>
+
+<!-- Modal para editar el perfil -->
+<div id="editProfileModal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeModal()" class="close">&times;</span>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            {{ form.username.label }} {{ form.username() }}<br>
+            {{ form.email.label }} {{ form.email() }}<br>
+            {{ form.submit() }}
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
