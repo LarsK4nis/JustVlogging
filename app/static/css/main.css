@@ -370,3 +370,15 @@ input[type="submit"]:hover {
     text-decoration: none;
     cursor: pointer;
 }
+/* Estilo para el logo */
+.logo {
+    display: block;
+    margin: 0 auto; /* Centra el logo horizontalmente */
+    max-width: 50px; /* Ajusta el tamaño del logo */
+    height: auto; /* Mantiene la proporción del logo */
+}
+.logo-container {
+    text-align: center; /* Centra el logo horizontalmente */
+    width: 100%; /* Ajusta el ancho del contenedor */
+    margin-top: 20px; /* Espacio desde la parte superior de la página */
+}
