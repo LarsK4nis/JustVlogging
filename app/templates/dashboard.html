@@ -2,12 +2,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Logo como enlace a Dashboard -->
-<div class="logo-container">
-    <a href="{{ url_for('dashboard') }}">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
-    </a>
-</div>
+
 
 <div class="user-info">
     <p>Logged in as {{ current_user.email }}</p>
@@ -15,10 +10,19 @@
     <a href="{{ url_for('logout') }}" class="logout-button">Cerrar sesión</a>
 </div>
 
-<h1>Dashboard</h1>
+<div class="creation-post-button">
+    <h1>Dashboard</h1>
 
 <!-- Botón para abrir el modal de creación de posts -->
-<a href="javascript:void(0)" onclick="document.getElementById('createPostModal').style.display='block'" class="create-post-button">Crear Post</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('createPostModal').style.display='block'" class="create-post-button">Crear Post</a>
+</div>
+
+<!-- Logo como enlace a Dashboard -->
+<div class="logo-container">
+    <a href="{{ url_for('dashboard') }}">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    </a>
+</div>
 
 <!-- Modal para crear un nuevo post -->
 <div id="createPostModal" class="modal">
