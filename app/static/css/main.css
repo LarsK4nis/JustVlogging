@@ -227,6 +227,7 @@ a:hover {
     max-width: 600px;
     margin: auto;
     padding: 10px;
+    margin-top: 100px;
 }
 
 .post {
@@ -381,6 +382,6 @@ input[type="submit"]:hover {
 .logo-container {
     text-align: center; /* Centra el logo horizontalmente */
     width: 100%; /* Ajusta el ancho del contenedor */
-    margin-top: 10px; /* Espacio desde la parte superior de la página */
-    
+    margin-top: -50px; /* Espacio desde la parte superior de la página */
+
 }
