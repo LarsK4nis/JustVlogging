@@ -385,3 +385,8 @@ input[type="submit"]:hover {
     margin-top: -50px; /* Espacio desde la parte superior de la página */
 
 }
+.logo-container-edit_profile {
+    text-align: center; /* Centra el logo horizontalmente */
+    width: 100%; /* Ajusta el ancho del contenedor */
+    margin-top: 0px; /* Espacio desde la parte superior de la página */
+}
