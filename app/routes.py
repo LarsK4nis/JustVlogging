@@ -26,6 +26,17 @@ def dashboard():
     posts = Post.query.order_by(Post.created_at.desc()).all()  # Obtiene todos los posts ordenados
     return render_template('dashboard.html', posts=posts)
 
+@app.route('/dashboard/admin_panel')
+@login_required
+def admin_panel():
+    if not current_user.is_admin:
+        # Si el usuario no es administrador, mostrar un mensaje de error o redirigir
+        flash('No tienes permiso para acceder a esta página', 'error')
+        return redirect(url_for('dashboard'))
+
+    # Aquí tu lógica para mostrar el panel de administrador
+    return render_template('admin_panel.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
