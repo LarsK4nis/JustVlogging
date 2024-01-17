@@ -26,16 +26,26 @@ def dashboard():
     posts = Post.query.order_by(Post.created_at.desc()).all()  # Obtiene todos los posts ordenados
     return render_template('dashboard.html', posts=posts)
 
-@app.route('/dashboard/admin_panel')
+@app.route('/dashboard/admin_panel', methods=['GET', 'POST'])
 @login_required
 def admin_panel():
     if not current_user.is_admin:
-        # Si el usuario no es administrador, mostrar un mensaje de error o redirigir
         flash('No tienes permiso para acceder a esta página', 'error')
         return redirect(url_for('dashboard'))
 
-    # Aquí tu lógica para mostrar el panel de administrador
-    return render_template('admin_panel.html')
+    users = User.query.all()
+
+    if request.method == 'POST':
+        user_id = request.form.get('user_id')
+        user_to_delete = User.query.get(user_id)
+        if user_to_delete:
+            db.session.delete(user_to_delete)
+            db.session.commit()
+            flash('Usuario eliminado con éxito', 'success')
+        else:
+            flash('Usuario no encontrado', 'error')
+
+    return render_template('admin_panel.html', users=users)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
