@@ -390,3 +390,9 @@ input[type="submit"]:hover {
     width: 100%; /* Ajusta el ancho del contenedor */
     margin-top: 0px; /* Espacio desde la parte superior de la página */
 }
+.logo-container-admin_panel {
+    text-align: center; /* Centra el logo horizontalmente */
+    width: 100%; /* Ajusta el ancho del contenedor */
+    margin-top: -80px; /* Espacio desde la parte superior de la página */
+
+}
