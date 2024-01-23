@@ -5,6 +5,9 @@ from .models import User, Post, Follower
 from .forms import LoginForm, RegistrationForm, EditProfileForm, PostForm
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+from .minio_utils import upload_file_to_minio  
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -131,16 +134,28 @@ def edit_profile():
 @app.route('/create_post', methods=['POST'])
 @login_required
 def create_post():
-    content = request.form.get('content')
-    if content:
-        post = Post(content=content, author=current_user)
+    form = PostForm()
+    if form.validate_on_submit():
+        content = form.content.data
+        image_file = request.files['image']
+        if image_file:
+            # Asegúrate de que el nombre del archivo sea seguro
+            filename = secure_filename(image_file.filename)
+            # Sube el archivo a MinIO y obtén la URL de la imagen
+            image_url = upload_file_to_minio(image_file, filename)
+            
+            # Crea el post con la URL de la imagen
+            post = Post(content=content, image_url=image_url, author=current_user)
+        else:
+            # Crea el post sin imagen
+            post = Post(content=content, author=current_user)
+        
         db.session.add(post)
         db.session.commit()
-        flash('Your post has been created!')
+        flash('Your post has been created!', 'success')
     else:
-        flash('Please enter some content for your post.')
+        flash('Please correct the form errors.', 'error')
     return redirect(url_for('dashboard'))
-
 
 @app.route('/follow/<username>')
 @login_required
