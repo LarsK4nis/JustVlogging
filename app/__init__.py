@@ -20,7 +20,7 @@ def create_app():
     app.config['MINIO_ACCESS_KEY'] = 'minioadmin'  # Cambia por tu clave de acceso real
     app.config['MINIO_SECRET_KEY'] = 'minioadmin'  # Cambia por tu clave secreta real
     app.config['MINIO_SECURE'] = False  # Cambia a True si usas HTTPS
-    app.config['MINIO_BUCKET'] = 'mybucket'  # Cambia por el nombre de tu bucket
+    app.config['MINIO_BUCKET'] = 'bucket'  # Cambia por el nombre de tu bucket
 
     # Inicializa las extensiones con la aplicación
     db.init_app(app)
