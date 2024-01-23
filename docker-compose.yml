@@ -34,9 +34,7 @@ services: #Servicios que corremos en nuestra red de docker.
       - "8080:80"
     depends_on:
       - db
-    volumes:
-      postgres_data:
-      
+
 
   minio:
     image: minio/minio
@@ -44,9 +42,15 @@ services: #Servicios que corremos en nuestra red de docker.
       - minio_data:/data
     ports:
       - "9000:9000"
+      - "9001:9001" # Console Port
     environment:
-      MINIO_ACCESS_KEY: minioadmin
-      MINIO_SECRET_KEY: minioadmin
-    command: server /data
-  volumes:
-    minio_data:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    depends_on:
+      - app
+
+volumes:
+  postgres_data:
+  minio_data:
+  
