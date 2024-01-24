@@ -32,6 +32,8 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    image_url = db.Column(db.String, nullable=True)  # Añade esta línea
+
 
 class Follower(db.Model):
     __tablename__ = 'followers'

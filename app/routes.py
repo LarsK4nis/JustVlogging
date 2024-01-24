@@ -25,11 +25,24 @@ def index():
     posts = Post.query.all()
     return render_template('index.html', posts=posts)
 
-@app.route('/dashboard')
+from .forms import PostForm  # Asegúrate de importar PostForm
+
+@app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    posts = Post.query.order_by(Post.created_at.desc()).all()  # Obtiene todos los posts ordenados
-    return render_template('dashboard.html', posts=posts)
+    form = PostForm()  # Crea una instancia de PostForm
+    if form.validate_on_submit():
+        content = form.content.data
+        # Aquí iría la lógica para manejar la carga de la imagen, si el formulario lo permite
+        # Por ejemplo, guardando el post en la base de datos
+        # No olvides implementar la lógica de carga de la imagen si tu formulario incluye ese campo
+
+        flash('Post creado con éxito', 'success')
+        return redirect(url_for('dashboard'))
+    
+    posts = Post.query.order_by(Post.created_at.desc()).all()
+    return render_template('dashboard.html', posts=posts, form=form)  # Pasa 'form' al contexto
+
 
 @app.route('/dashboard/admin_panel', methods=['GET', 'POST'])
 @login_required
@@ -138,26 +151,28 @@ def create_post():
     form = PostForm()
     if request.method == 'POST' and form.validate_on_submit():
         content = form.content.data
-        image_file = form.image.data
+        image_file = form.image.data  # Asegúrate de que esta línea refleje cómo accedes al archivo de imagen en tu formulario
         image_url = None
         if image_file:
-            # Asegúrate de que el nombre del archivo sea seguro
             filename = secure_filename(image_file.filename)
-            # Sube el archivo a MinIO y obtén la URL de la imagen
-            image_url = upload_file_to_minio(image_file)
-        
-        # Crea el post con o sin URL de imagen
+            # Asegúrate de que 'upload_file_to_minio' recibe el objeto de archivo correcto
+            # y devuelve la URL de la imagen correctamente.
+            image_url = upload_file_to_minio(image_file)  # Asume que esta función maneja el stream del archivo y devuelve la URL de la imagen
+            
         post = Post(content=content, author=current_user, image_url=image_url)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
-        return redirect(url_for('dashboard'))
     else:
+        # Si hay errores en el formulario, mostrarlos
         for fieldName, errorMessages in form.errors.items():
             for err in errorMessages:
                 flash(f"Error in {fieldName}: {err}", 'error')
-                
-    return render_template('dashboard.html', form=form)
+
+    # Asegúrate de pasar 'form' al renderizar para que puedas usar 'form.hidden_tag()' en tu plantilla.
+    # Si 'dashboard.html' espera un objeto 'form' y no se pasa, obtendrás un error.
+    # Posiblemente necesites ajustar esto dependiendo de cómo esté configurada tu plantilla 'dashboard.html'.
+    return render_template('dashboard.html', form=form, posts=Post.query.order_by(Post.created_at.desc()).all())
 
 @app.route('/follow/<username>')
 @login_required

@@ -26,13 +26,15 @@
     <div class="modal-content">
         <span onclick="document.getElementById('createPostModal').style.display='none'" class="close">&times;</span>
         <form method="POST" action="{{ url_for('create_post') }}" enctype="multipart/form-data">
-            <textarea name="content" placeholder="¿Qué estás pensando?"></textarea>
+            {{ form.hidden_tag() }}
+            <textarea name="content" placeholder="¿Qué estás pensando?">{{ form.content.data }}</textarea>
             <!-- Campo para adjuntar imagen -->
             <input type="file" name="image" accept="image/png, image/jpeg">
             <input type="submit" value="Publicar">
         </form>
     </div>
 </div>
+
 
 <!-- Mostrar mensajes flash -->
 {% with messages = get_flashed_messages(with_categories=true) %}
