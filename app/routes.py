@@ -7,6 +7,8 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from .minio_utils import upload_file_to_minio  
+from .forms import PostForm
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -72,7 +74,6 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/register', methods=['GET', 'POST'])
-@app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -131,31 +132,32 @@ def edit_profile():
 
 
 
-@app.route('/create_post', methods=['POST'])
+@app.route('/create_post', methods=['GET', 'POST'])
 @login_required
 def create_post():
     form = PostForm()
-    if form.validate_on_submit():
+    if request.method == 'POST' and form.validate_on_submit():
         content = form.content.data
-        image_file = request.files['image']
+        image_file = form.image.data
+        image_url = None
         if image_file:
             # Asegúrate de que el nombre del archivo sea seguro
             filename = secure_filename(image_file.filename)
             # Sube el archivo a MinIO y obtén la URL de la imagen
-            image_url = upload_file_to_minio(image_file, filename)
-            
-            # Crea el post con la URL de la imagen
-            post = Post(content=content, image_url=image_url, author=current_user)
-        else:
-            # Crea el post sin imagen
-            post = Post(content=content, author=current_user)
+            image_url = upload_file_to_minio(image_file)
         
+        # Crea el post con o sin URL de imagen
+        post = Post(content=content, author=current_user, image_url=image_url)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
+        return redirect(url_for('dashboard'))
     else:
-        flash('Please correct the form errors.', 'error')
-    return redirect(url_for('dashboard'))
+        for fieldName, errorMessages in form.errors.items():
+            for err in errorMessages:
+                flash(f"Error in {fieldName}: {err}", 'error')
+                
+    return render_template('dashboard.html', form=form)
 
 @app.route('/follow/<username>')
 @login_required
