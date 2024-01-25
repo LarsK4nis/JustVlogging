@@ -31,8 +31,11 @@ def upload_file_to_minio(file):
         print(file.content_length)
         print("Estamos 2")
         # Genera una URL presignada para el acceso al archivo
+        
         url = minio_client.presigned_get_object(bucket_name, filename)
         return url
     except S3Error as e:
         current_app.logger.error(f"Error al subir archivo a MinIO: {e}")
         return None
+
+
