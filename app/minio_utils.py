@@ -27,6 +27,9 @@ def upload_file_to_minio(file):
             length=file.content_length,
             content_type=file.content_type
         )
+        print("ESTAMOS")
+        print(file.content_length)
+        print("Estamos 2")
         # Genera una URL presignada para el acceso al archivo
         url = minio_client.presigned_get_object(bucket_name, filename)
         return url
