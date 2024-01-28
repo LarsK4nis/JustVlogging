@@ -24,6 +24,7 @@ def upload_file_to_minio(file):
         file.seek(0)
         
     # Intenta subir el archivo a MinIO
+    print("Antes del try")
     try:
         minio_client.put_object(
             bucket_name,
