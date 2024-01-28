@@ -157,6 +157,8 @@ def create_post():
             filename = secure_filename(image_file.filename)
             # Asegúrate de que 'upload_file_to_minio' recibe el objeto de archivo correcto
             # y devuelve la URL de la imagen correctamente.
+            image_file.stream.seek(0)
+            
             image_url = upload_file_to_minio(image_file)  # Asume que esta función maneja el stream del archivo y devuelve la URL de la imagen
             
         post = Post(content=content, author=current_user, image_url=image_url)

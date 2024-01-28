@@ -18,6 +18,11 @@ def upload_file_to_minio(file):
     # Genera un nombre de archivo seguro
     filename = secure_filename(file.filename)
 
+     # Verifica si el archivo está vacío (es decir, ya se ha leído el stream)
+    if file.content_length == 0:
+        # Restablece el puntero al inicio del stream
+        file.seek(0)
+        
     # Intenta subir el archivo a MinIO
     try:
         minio_client.put_object(
