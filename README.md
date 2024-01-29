@@ -62,6 +62,7 @@ The application follows a standard structure for Flask-based applications and in
   - **Password**: `password`
 
 - **MinIOConsole**:
+  - **URL**: `http://localhost:9001`
   - **User**: `minioadmin`
   - **Password**: `minioadmin`
 
