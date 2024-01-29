@@ -49,9 +49,11 @@ The application follows a standard structure for Flask-based applications and in
   <p align="center">
     <img src="image.png" alt="pgAdmin Credentials" width="75%" />
   </p>
+
   - **HostName/Address**: `db`
   - **Username**: `user`
   - **Password**: `password`
+  
   <p align="center">
     <img src="image-1.png" alt="Database Connection" width="75%" />
   </p>
