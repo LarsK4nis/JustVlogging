@@ -42,6 +42,12 @@ The application follows a standard structure for Flask-based applications and in
   - **URL**: `http://localhost:8080`
   - **Email**: `admin@admin.com`
   - **Password**: `root`
+  - **Database_Name**: `microblogging`
+  ![Alt text](image.png)
+  - **Host Name / Address**: `db`
+  - **Username**: `user`
+  - **Password**: `password`
+  ![Alt text](image-1.png)
 - **PostgreSQL**:
   - **User**: `user`
   - **Password**: `password`
