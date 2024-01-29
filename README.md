@@ -1,6 +1,6 @@
 # Microblogging Platform
 <p align="center">
-  <img src="image-2.png" alt="Main Image" width="50%" />
+  <img src="image-2.png" alt="Main Image" width="35%" />
 </p>
 
 ## Overview
