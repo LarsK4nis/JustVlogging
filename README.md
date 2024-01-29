@@ -64,6 +64,7 @@ The application follows a standard structure for Flask-based applications and in
 - **MinIOConsole**:
   - **User**: `minioadmin`
   - **Password**: `minioadmin`
+
 ### Project Structure
 <pre><code>
 .
@@ -90,5 +91,3 @@ The `tests/` directory contains scripts to test various components of the applic
 ## Contributing
 Contributions to the project are welcome. Please follow the standard Git workflow for contributions.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
