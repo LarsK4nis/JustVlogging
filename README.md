@@ -53,22 +53,24 @@ The application follows a standard structure for Flask-based applications and in
   - **Password**: `password`
 
 ### Project Structure
+<pre><code>
 .
-├── README.md # Project overview and setup instructions
-├── app # Main application directory
-│ ├── init.py # Initializes the Flask app and configures components
-│ ├── forms.py # Defines forms for user input
-│ ├── minio_utils.py # Utility functions for MinIO operations
-│ ├── models.py # Database models
-│ ├── routes.py # Flask routes for different endpoints
-│ ├── static # Contains static files like CSS, JavaScript, and images
-│ ├── templates # HTML templates for rendering views
-│ └── utils.py # Additional utility functions
-├── app.py # Entry point to run the Flask application
-├── docker # Contains Docker related files
-├── docker-compose.yml # Docker Compose file to orchestrate containers
-├── requirements.txt # Python dependencies for the project
-└── tests # Contains test scripts for the application
+├── README.md                    # Project overview and setup instructions
+├── app                          # Main application directory
+│   ├── __init__.py              # Initializes the Flask app and configures components
+│   ├── forms.py                 # Defines forms for user input
+│   ├── minio_utils.py           # Utility functions for MinIO operations
+│   ├── models.py                # Database models
+│   ├── routes.py                # Flask routes for different endpoints
+│   ├── static                   # Contains static files like CSS, JavaScript, and images
+│   ├── templates                # HTML templates for rendering views
+│   └── utils.py                 # Additional utility functions
+├── app.py                       # Entry point to run the Flask application
+├── docker                       # Contains Docker related files
+├── docker-compose.yml           # Docker Compose file to orchestrate containers
+├── requirements.txt             # Python dependencies for the project
+└── tests                        # Contains test scripts for the application
+</code></pre>
 
 
 ## Testing
