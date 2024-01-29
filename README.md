@@ -1,5 +1,5 @@
 # Microblogging Platform
-
+![Alt text](image-2.png)
 ## Overview
 The Microblogging Platform is a web-based application that allows users to post and share their opinions and comments in a microblogging environment. It is designed to be simple yet functional, catering to those who appreciate minimalism in web design.
 
@@ -13,11 +13,11 @@ The application is containerized using Docker and orchestrated with Docker Compo
 ### Steps to Install
 1. **Clone the repository**: Clone the project repository to your local machine.
     ```bash
-    git clone https://github.com/your-username/microblogging-platform.git
+    git clone https://github.com/LarsK4nis/JustVlogging
     ```
 2. **Navigate to the project directory**:
     ```bash
-    cd microblogging-platform
+    cd /JustVlogging
     ```
 3. **Build and run the containers**:
     ```bash
