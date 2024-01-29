@@ -1,5 +1,8 @@
 # Microblogging Platform
-![Alt text](image-2.png)
+<p align="center">
+  <img src="image-2.png" alt="Main Image" width="50%" />
+</p>
+
 ## Overview
 The Microblogging Platform is a web-based application that allows users to post and share their opinions and comments in a microblogging environment. It is designed to be simple yet functional, catering to those who appreciate minimalism in web design.
 
@@ -43,11 +46,15 @@ The application follows a standard structure for Flask-based applications and in
   - **Email**: `admin@admin.com`
   - **Password**: `root`
   - **Database_Name**: `microblogging`
-  ![Alt text](image.png)
+  <p align="center">
+    <img src="image.png" alt="pgAdmin Credentials" width="75%" />
+  </p>
   - **Host Name / Address**: `db`
   - **Username**: `user`
   - **Password**: `password`
-  ![Alt text](image-1.png)
+  <p align="center">
+    <img src="image-1.png" alt="Database Connection" width="75%" />
+  </p>
 - **PostgreSQL**:
   - **User**: `user`
   - **Password**: `password`
@@ -71,7 +78,6 @@ The application follows a standard structure for Flask-based applications and in
 ├── requirements.txt             # Python dependencies for the project
 └── tests                        # Contains test scripts for the application
 </code></pre>
-
 
 ## Testing
 The `tests/` directory contains scripts to test various components of the application. Run these tests to ensure the application functions as expected.
