@@ -1,10 +1,10 @@
-# Microblogging Platform
+# JustVlogging Platform
 <p align="center">
   <img src="image-2.png" alt="Main Image" width="35%" />
 </p>
 
 ## Overview
-The Microblogging Platform is a web-based application that allows users to post and share their opinions and comments in a microblogging environment. It is designed to be simple yet functional, catering to those who appreciate minimalism in web design.
+The JustVlogging Platform is a web-based application that allows users to post and share their opinions and comments in a microblogging environment. It is designed to be simple yet functional, catering to those who appreciate minimalism in web design.
 
 ## Installation and Setup
 The application is containerized using Docker and orchestrated with Docker Compose. This setup ensures easy deployment and management of the application and its associated services.
