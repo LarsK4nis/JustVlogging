@@ -53,7 +53,7 @@ The application follows a standard structure for Flask-based applications and in
   - **HostName/Address**: `db`
   - **Username**: `user`
   - **Password**: `password`
-  
+
   <p align="center">
     <img src="image-1.png" alt="Database Connection" width="75%" />
   </p>
@@ -61,6 +61,9 @@ The application follows a standard structure for Flask-based applications and in
   - **User**: `user`
   - **Password**: `password`
 
+- **MinIOConsole**:
+  - **User**: `minioadmin`
+  - **Password**: `minioadmin`
 ### Project Structure
 <pre><code>
 .
