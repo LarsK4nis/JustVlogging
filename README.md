@@ -66,6 +66,37 @@ The application follows a standard structure for Flask-based applications and in
   - **User**: `minioadmin`
   - **Password**: `minioadmin`
 
+## Admin Panel
+
+The `/admin_panel` route provides access to an administrative interface within the application. This panel is exclusively for users with administrative privileges and includes capabilities for managing the application's users and content.
+
+### Accessing the Admin Panel
+
+To access the admin panel, navigate to `/dashboard/admin_panel` after logging in. Access is restricted to users with administrative rights.
+
+### Granting Administrative Privileges
+
+By default, new users do not have administrative rights. To grant a user admin rights, a change must be made directly in the database:
+
+1. Open pgAdmin from `http://localhost:8080`.
+2. Navigate to the `microblogging` database.
+3. Find the `users` table.
+4. Locate the user you wish to grant admin rights to and edit the `is_admin` column to `True`.
+
+Please note that direct database modification should be done with caution and only by those who fully understand the implications of these changes.
+
+### Admin Panel Features
+
+Administrators can perform various tasks such as:
+
+- View a list of all users.
+- Delete user accounts.
+- Manage posts and comments.
+- Access system logs and perform other maintenance tasks.
+
+**Note**: The actual features available in the admin panel may vary based on the current implementation and version of the application. Please refer to the application documentation or contact the development team for the latest feature set.
+
+
 ### Project Structure
 <pre><code>
 .
