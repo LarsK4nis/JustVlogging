@@ -12,37 +12,13 @@ body {
     background: #f4f4f4;
 }
 
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    transition: background-color 0.3s ease;
-}
 
-header:hover {
-    background-color: #444;
-}
 
 main {
     margin-top: 20px;
 }
 
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    transition: background-color 0.3s ease;
-}
 
-footer:hover {
-    background-color: #444;
-}
 
 h1, h2 {
     color: #333;
@@ -324,12 +300,13 @@ input[type="submit"]:hover {
 .create-post-button {
     background-color: #1da1f2; /* Color azul */
     color: white;
-    padding: 5px 10px; /* Ajusta el padding según necesites */
+    padding: 10px 15px; /* Aumenta el padding para hacer el botón más grande */
+    font-size: 1.2em; /* Aumenta el tamaño del texto */
     border-radius: 5px; /* Bordes redondeados */
     text-decoration: none; /* Quita el subrayado del enlace */
-    font-size: 0.9em; /* Ajusta el tamaño del texto */
-    margin-top: 10px; /* Espacio desde la parte superior */
     display: inline-block; /* Hace que el botón no ocupe todo el ancho */
+    margin-left: 20px; /* Desplaza el botón hacia la derecha */
+    margin-top: 10px; /* Espacio desde la parte superior */
 }
 
 .create-post-button:hover {
@@ -396,3 +373,16 @@ input[type="submit"]:hover {
     margin-top: 0px; /* Espacio desde la parte superior de la página */
 
 }
+
+/* static/css/main.css */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #87CEEB;; /* or any background color that fits your design */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensures it's in the background */
+  }
+  
+  
