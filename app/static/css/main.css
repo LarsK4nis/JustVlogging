@@ -133,29 +133,25 @@ a:hover {
 .edit-profile-button,
 .logout-button {
     display: block; /* Los botones se muestran uno debajo del otro */
-    padding: 5px 10px;
+    padding: 12px 50px; /* Aumenta el padding para un botón más grande */
     margin-top: 5px; /* Separación ligera entre los botones */
+    margin-right: 30;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 9999px; /* Bordes redondeados */
     text-align: center;
+    font-size: 15px; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Texto en negrita */
+    cursor: pointer; /* Cambia el cursor a una mano cuando pasa por encima */
+    transition: background-color 0.2s ease; /* Transición suave del color de fondo */
+    background-color: white; /* Fondo blanco */
+    color: #1DA1F2; /* Texto en azul */
+    border: 1px solid #1DA1F2; /* Borde azul */
 }
 
-.edit-profile-button {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.edit-profile-button:hover {
-    background-color: #388E3C;
-}
-
-.logout-button {
-    background-color: #f44336;
-    color: white;
-}
-
+.edit-profile-button:hover,
 .logout-button:hover {
-    background-color: #d32f2f;
+    background-color: #157ABA; /* Azul más oscuro al pasar el ratón por encima */
+    color: white; /* Texto en blanco */
 }
 
 
@@ -298,19 +294,22 @@ input[type="submit"]:hover {
 }
 
 .create-post-button {
-    background-color: #1da1f2; /* Color azul */
+    background-color: #1DA1F2; /* Color azul característico de Twitter */
     color: white;
-    padding: 10px 15px; /* Aumenta el padding para hacer el botón más grande */
-    font-size: 1.2em; /* Aumenta el tamaño del texto */
-    border-radius: 5px; /* Bordes redondeados */
-    text-decoration: none; /* Quita el subrayado del enlace */
+    padding: 12px 40px; /* Ajusta el padding para cambiar el tamaño del botón */
+    font-size: 15px; /* Tamaño de fuente similar al de Twitter */
+    font-weight: bold; /* Texto en negrita */
+    border-radius: 9999px; /* Bordes redondeados (radio grande para bordes completamente redondeados) */
+    text-decoration: none; /* Sin subrayado */
     display: inline-block; /* Hace que el botón no ocupe todo el ancho */
-    margin-left: 20px; /* Desplaza el botón hacia la derecha */
+    margin-left: auto; /* Alinea el botón a la derecha */
     margin-top: 10px; /* Espacio desde la parte superior */
+    cursor: pointer; /* Cambia el cursor a una mano cuando pasa por encima */
+    transition: background-color 0.2s ease; /* Transición suave del color de fondo */
 }
 
 .create-post-button:hover {
-    background-color: #1991db; /* Color al pasar el ratón por encima */
+    background-color: #1991db; /* Un tono de azul más oscuro al pasar el ratón por encima */
 }
 
 .modal {

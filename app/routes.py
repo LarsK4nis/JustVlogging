@@ -152,14 +152,20 @@ def create_post():
     if request.method == 'POST' and form.validate_on_submit():
         content = form.content.data
         image_file = form.image.data  # Asegúrate de que esta línea refleje cómo accedes al archivo de imagen en tu formulario
+        image_galle = request.files.get('image', '')
+        print(form)
+        print(form.image)
+        print(form.image.__class__)
+        print(request.files)
+        print(image_galle)
         image_url = None
         if image_file:
             filename = secure_filename(image_file.filename)
             # Asegúrate de que 'upload_file_to_minio' recibe el objeto de archivo correcto
             # y devuelve la URL de la imagen correctamente.
-            image_file.stream.seek(0)
+            # image_file.stream.seek(0)
             print("LLAMAMAOS FUNCION")
-            image_url = upload_file_to_minio(image_file)  # Asume que esta función maneja el stream del archivo y devuelve la URL de la imagen
+            image_url = upload_file_to_minio(image_galle)  # Asume que esta función maneja el stream del archivo y devuelve la URL de la imagen
             
         post = Post(content=content, author=current_user, image_url=image_url)
         db.session.add(post)
@@ -175,6 +181,7 @@ def create_post():
     # Si 'dashboard.html' espera un objeto 'form' y no se pasa, obtendrás un error.
     # Posiblemente necesites ajustar esto dependiendo de cómo esté configurada tu plantilla 'dashboard.html'.
     return render_template('dashboard.html', form=form, posts=Post.query.order_by(Post.created_at.desc()).all())
+
 
 @app.route('/follow/<username>')
 @login_required

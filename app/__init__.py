@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from minio import Minio
+import urllib3
 
 # Instancias de las extensiones
 db = SQLAlchemy()
@@ -16,7 +17,7 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Configuración de MinIO
-    app.config['MINIO_ENDPOINT'] = 'minio:9000'  # Cambia según tu configuración
+    app.config['MINIO_ENDPOINT'] = 'localhost:9000'  # Cambia según tu configuración
     app.config['MINIO_ACCESS_KEY'] = 'minioadmin'  # Cambia por tu clave de acceso real
     app.config['MINIO_SECRET_KEY'] = 'minioadmin'  # Cambia por tu clave secreta real
     app.config['MINIO_SECURE'] = False  # Cambia a True si usas HTTPS
@@ -31,7 +32,8 @@ def create_app():
         app.config['MINIO_ENDPOINT'],
         access_key=app.config['MINIO_ACCESS_KEY'],
         secret_key=app.config['MINIO_SECRET_KEY'],
-        secure=app.config['MINIO_SECURE']
+        secure=app.config['MINIO_SECURE'],
+        http_client=urllib3.ProxyManager("http://minio:9000/")
     )
 
     # Asegura que el bucket existe
