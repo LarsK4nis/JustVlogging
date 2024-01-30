@@ -121,5 +121,7 @@ Administrators can perform various tasks such as:
 The `tests/` directory contains scripts to test various components of the application. Run these tests to ensure the application functions as expected.
 
 ## Contributing
-Contributions to the project are welcome. Please follow the standard Git workflow for contributions.
+Contributions to the project are welcome. Just Vlog it!
+
+
 
