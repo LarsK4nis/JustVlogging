@@ -303,7 +303,7 @@ input[type="submit"]:hover {
     text-decoration: none; /* Sin subrayado */
     display: inline-block; /* Hace que el botón no ocupe todo el ancho */
     margin-left: auto; /* Alinea el botón a la derecha */
-    margin-top: 10px; /* Espacio desde la parte superior */
+    margin-top: 12px; /* Espacio desde la parte superior */
     cursor: pointer; /* Cambia el cursor a una mano cuando pasa por encima */
     transition: background-color 0.2s ease; /* Transición suave del color de fondo */
 }
@@ -384,4 +384,11 @@ input[type="submit"]:hover {
     z-index: -1; /* Ensures it's in the background */
   }
   
-  
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Ajusta la altura para centrar verticalmente */
+}
+
+
