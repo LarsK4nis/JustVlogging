@@ -13,11 +13,12 @@
 
 
     <h2>Panel de Administración</h2>
-    <table>
+    <div class="center-container">
+        <table>
         <tr>
             <th>Username</th>
             <th>Email</th>
-            <th>Acciones</th>
+            <th>Actions</th>
         </tr>
         {% for user in users %}
         <tr>
@@ -26,10 +27,12 @@
             <td>
                 <form method="POST" action="{{ url_for('admin_panel') }}">
                     <input type="hidden" name="user_id" value="{{ user.id }}">
-                    <input type="submit" value="Eliminar">
+                    <input type="submit" value="Delete">
                 </form>
             </td>
         </tr>
         {% endfor %}
-    </table>
+        </table>
+      </div>
+    
 {% endblock %}
