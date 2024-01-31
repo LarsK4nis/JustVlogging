@@ -96,6 +96,34 @@ Administrators can perform various tasks such as:
 
 **Note**: The actual features available in the admin panel may vary based on the current implementation and version of the application. Please refer to the application documentation or contact the development team for the latest feature set.
 
+## Creating Public Buckets in MinIO
+
+To enhance the functionality of our Microblogging Platform, you might need to create public buckets in MinIO for storing and accessing files publicly. This guide will walk you through the process of creating a public bucket using the MinIO console.
+
+### Accessing the MinIO Console
+
+1. **Open your web browser** and navigate to the MinIO console. Typically, the URL is `http://localhost:9000` if you're running MinIO locally.
+
+2. **Log in** using your MinIO credentials. These credentials are specified in the `docker-compose.yml` or the MinIO configuration file.
+
+### Creating a New Bucket
+
+3. Once logged in, **navigate to the 'Buckets' section** in the MinIO console. This section allows you to manage your storage buckets.
+
+4. **Create a new bucket** by clicking on the ‘Create Bucket’ button. Enter a name for your bucket and confirm the creation.
+
+### Setting Up Public Access
+
+5. After creating the bucket, **select it from the bucket list**. Navigate to the 'Access Policy' tab.
+
+6. In the 'Access Policy' tab, you have three options: `None`, `Read Only`, `Write Only`, and `Read and Write`. To make the bucket public, select `Read and Write`. This setting allows public read and write access to your bucket.
+
+7. **Save your changes**. Your bucket is now publicly accessible, and files stored in this bucket can be accessed without authentication.
+
+### Caution
+
+It's important to remember that setting a bucket to public allows anyone to read and write to this bucket. Be cautious about the data you store in public buckets, and avoid storing sensitive information.
+
 
 ### Project Structure
 <pre><code>
