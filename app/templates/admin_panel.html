@@ -3,7 +3,6 @@
 
 {% block content %}
 
-
 <!-- Logo como enlace a Dashboard -->
 <div class="logo-container-admin_panel">
     <a href="{{ url_for('dashboard') }}">
@@ -11,28 +10,31 @@
     </a>
 </div>
 
+<h2>Panel de Administración</h2>
 
-    <h2>Panel de Administración</h2>
-    <div class="center-container">
-        <table>
-        <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-            <td>
-                <form method="POST" action="{{ url_for('admin_panel') }}">
-                    <input type="hidden" name="user_id" value="{{ user.id }}">
-                    <input type="submit" value="Delete">
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
+<!-- Contenedor para centrar la tabla -->
+<div class="center-container">
+    <div class="admin-table-container">
+        <table class="admin-table">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('admin_panel') }}" class="admin-action-form">
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <button type="submit" class="btn-delete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
         </table>
-      </div>
-    
+    </div>
+</div>
+
 {% endblock %}
